@@ -1,0 +1,22 @@
+<form [formGroup]="signInForm" fxLayout="column" fxLayoutGap="18px">
+  <h1 style="text-align: center">Sign in</h1>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput name="email" formControlName="email">
+    <mat-error *ngIf="signInForm.get('email').touched && signInForm.get('email').hasError('required')">
+      Please enter your email
+    </mat-error>
+  </mat-form-field>
+  <div fxLayout="column" fxLayoutAlign="start end">
+    <p routerLink="/auth/forgot-password" class="action-link">Forgot Password?</p>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" name="password" formControlName="password">
+      <mat-error *ngIf="signInForm.get('password').touched && signInForm.get('password').hasError('required')">
+        Please enter your password
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="signInForm.invalid">Sign In</button>
+  <button mat-raised-button color="accent" routerLink="/auth/sign-up">Create An Account</button>
+</form>

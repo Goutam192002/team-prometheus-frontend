@@ -1,0 +1,36 @@
+<form [formGroup]="signUpForm" fxLayout="column" fxLayoutGap="18px">
+  <h1 style="text-align: center">Create An Account</h1>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput name="email" formControlName="email">
+    <mat-error *ngIf="signUpForm.touched && signUpForm.get('email').hasError('required')">
+      Please enter your email.
+    </mat-error>
+    <mat-error *ngIf="signUpForm.touched && signUpForm.get('email').hasError('email')">
+      Please enter a valid email.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput name="password" type="password" formControlName="password">
+    <mat-error *ngIf="signUpForm.touched && signUpForm.get('password').hasError('required')">
+      Please enter your password.
+    </mat-error>
+    <mat-error *ngIf="signUpForm.touched && signUpForm.get('password').hasError('minLength')">
+      Password should be of minimum 8 characters.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Confirm Password</mat-label>
+    <input matInput name="confirm-password" type="password" formControlName="confirm_password">
+    <mat-error *ngIf="signUpForm.touched && signUpForm.get('confirm_password').hasError('required')">
+      Please confirm your password
+    </mat-error>
+  </mat-form-field>
+  <div fxLayout fxLayoutGap="8px">
+    <mat-checkbox formControlName="terms_accepted"></mat-checkbox>
+    <p>I agree to the terms and conditions.</p>
+  </div>
+  <button mat-raised-button color="primary" [disabled]="signUpForm.invalid">Create an Account</button>
+  <button mat-raised-button color="accent" routerLink="/auth/sign-in">Sign In</button>
+</form>
